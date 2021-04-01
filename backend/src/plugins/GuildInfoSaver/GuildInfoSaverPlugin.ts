@@ -11,7 +11,7 @@ export const GuildInfoSaverPlugin = zeppelinGuildPlugin<GuildInfoSaverPluginType
   configSchema: t.type({}),
 
   onLoad(pluginData) {
-    const { state, guild } = pluginData;
+    const { state } = pluginData;
 
     state.allowedGuilds = new AllowedGuilds();
 

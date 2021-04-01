@@ -9,10 +9,14 @@ export function getRecentActionCount(
   since: number,
 ): number {
   return pluginData.state.recentActions.reduce((count, action) => {
-    if (action.timestamp < since) return count;
-    if (action.type !== type) return count;
-    if (action.actionGroupId !== actionGroupId) return count;
-    if (action.userId !== userId) return count;
+    switch (true) {
+      case action.timestamp < since:
+      case action.type !== type:
+      case action.actionGroupId !== actionGroupId:
+      case action.userId !== userId: {
+        return count;
+      }
+    }
     return count + action.count;
   }, 0);
 }

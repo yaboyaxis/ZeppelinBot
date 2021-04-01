@@ -28,12 +28,20 @@ export async function getChannelInfoEmbed(
   };
 
   let icon;
-  if (channel.type === Constants.ChannelTypes.GUILD_VOICE) {
-    icon = VOICE_CHANNEL_ICON;
-  } else if (channel.type === Constants.ChannelTypes.GUILD_NEWS) {
-    icon = ANNOUNCEMENT_CHANNEL_ICON;
-  } else {
-    icon = TEXT_CHANNEL_ICON;
+
+  switch (channel.type) {
+    case Constants.ChannelTypes.GUILD_VOICE: {
+      icon = VOICE_CHANNEL_ICON;
+      break;
+    }
+    case Constants.ChannelTypes.GUILD_NEWS: {
+      icon = ANNOUNCEMENT_CHANNEL_ICON;
+      break;
+    }
+    default: {
+      icon = TEXT_CHANNEL_ICON;
+      break;
+    }
   }
 
   const channelType =

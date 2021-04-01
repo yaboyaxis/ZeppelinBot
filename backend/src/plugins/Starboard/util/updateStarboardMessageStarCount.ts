@@ -1,5 +1,4 @@
 import { Client, GuildTextableChannel, Message } from "eris";
-import { noop } from "../../../utils";
 import { createStarboardPseudoFooterForMessage } from "./createStarboardPseudoFooterForMessage";
 import { TStarboardOpts } from "../types";
 import Timeout = NodeJS.Timeout;

@@ -38,32 +38,32 @@ export async function log(pluginData: GuildPluginData<LogsPluginType>, type: Log
 
       // If this entry is from an excluded channel, skip it
       if (opts.excluded_channels) {
-        if (
-          type === LogType.MESSAGE_DELETE ||
-          type === LogType.MESSAGE_DELETE_BARE ||
-          type === LogType.MESSAGE_EDIT ||
-          type === LogType.MESSAGE_SPAM_DETECTED ||
-          type === LogType.CENSOR ||
-          type === LogType.CLEAN
-        ) {
-          if (opts.excluded_channels.includes(data.channel.id)) {
-            continue logChannelLoop;
+        switch (type) {
+          case LogType.MESSAGE_DELETE:
+          case LogType.MESSAGE_DELETE_BARE:
+          case LogType.MESSAGE_EDIT:
+          case LogType.MESSAGE_SPAM_DETECTED:
+          case LogType.CENSOR:
+          case LogType.CLEAN: {
+            if (opts.excluded_channels.includes(data.channel.id)) continue logChannelLoop;
+            break;
           }
         }
       }
 
       // If this entry is from an excluded category, skip it
       if (opts.excluded_categories) {
-        if (
-          type === LogType.MESSAGE_DELETE ||
-          type === LogType.MESSAGE_DELETE_BARE ||
-          type === LogType.MESSAGE_EDIT ||
-          type === LogType.MESSAGE_SPAM_DETECTED ||
-          type === LogType.CENSOR ||
-          type === LogType.CLEAN
-        ) {
-          if (data.channel.parentID && opts.excluded_categories.includes(data.channel.parentID)) {
-            continue logChannelLoop;
+        switch (type) {
+          case LogType.MESSAGE_DELETE:
+          case LogType.MESSAGE_DELETE_BARE:
+          case LogType.MESSAGE_EDIT:
+          case LogType.MESSAGE_SPAM_DETECTED:
+          case LogType.CENSOR:
+          case LogType.CLEAN: {
+            if (data.channel.parentID && opts.excluded_categories.includes(data.channel.parentID)) {
+              continue logChannelLoop;
+            }
+            break;
           }
         }
       }

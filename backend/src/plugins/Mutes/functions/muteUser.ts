@@ -17,7 +17,6 @@ import { CasesPlugin } from "../../Cases/CasesPlugin";
 import { CaseTypes } from "../../../data/CaseTypes";
 import { LogType } from "../../../data/LogType";
 import { Case } from "../../../data/entities/Case";
-import { sendErrorMessage } from "src/pluginUtils";
 import { LogsPlugin } from "src/plugins/Logs/LogsPlugin";
 
 export async function muteUser(
@@ -64,7 +63,7 @@ export async function muteUser(
     const restoreRoles = restoreRolesOnMuteOverride ?? config.restore_roles_on_mute;
 
     // remove roles
-    if (!Array.isArray(removeRoles)) {
+    if (!(removeRoles instanceof Array)) {
       if (removeRoles) {
         // exclude managed roles from being removed
         const managedRoles = pluginData.guild.roles.filter(x => x.managed).map(y => y.id);
@@ -77,10 +76,8 @@ export async function muteUser(
     }
 
     // set roles to be restored
-    if (!Array.isArray(restoreRoles)) {
-      if (restoreRoles) {
-        rolesToRestore = currentUserRoles;
-      }
+    if (!(removeRoles instanceof Array)) {
+      if (restoreRoles) rolesToRestore = currentUserRoles;
     } else {
       rolesToRestore = currentUserRoles.filter(x => (<string[]>restoreRoles).includes(x));
     }

@@ -2,7 +2,7 @@ import { ExtendedMatchParams } from "knub/dist/config/PluginConfigManager";
 import { GuildPluginData } from "knub";
 import { TagsPluginType, TTagCategory } from "../types";
 import { renderTagFromString } from "./renderTagFromString";
-import { convertDelayStringToMS, StrictMessageContent } from "../../../utils";
+import { StrictMessageContent } from "../../../utils";
 import escapeStringRegexp from "escape-string-regexp";
 import { Member } from "eris";
 
@@ -44,7 +44,7 @@ export async function matchAndRenderTagFromString(
 
     const withoutPrefix = str.slice(prefix.length);
 
-    for (const [tagName, tagBody] of Object.entries(category.tags)) {
+    for (const [tagName, _] of Object.entries(category.tags)) {
       const regex = new RegExp(`^${escapeStringRegexp(tagName)}(?:\\s|$)`);
       if (regex.test(withoutPrefix)) {
         const renderedContent = await renderTagFromString(
@@ -71,25 +71,17 @@ export async function matchAndRenderTagFromString(
   }
 
   // Dynamic tags
-  if (config.can_use !== true) {
-    return null;
-  }
+  if (config.can_use !== true) return null;
 
   const dynamicTagPrefix = config.prefix;
-  if (!str.startsWith(dynamicTagPrefix)) {
-    return null;
-  }
+  if (!str.startsWith(dynamicTagPrefix)) return null;
 
   const dynamicTagNameMatch = str.slice(dynamicTagPrefix.length).match(/^\S+/);
-  if (dynamicTagNameMatch === null) {
-    return null;
-  }
+  if (dynamicTagNameMatch === null) return null;
 
   const dynamicTagName = dynamicTagNameMatch[0];
   const dynamicTag = await pluginData.state.tags.find(dynamicTagName);
-  if (!dynamicTag) {
-    return null;
-  }
+  if (!dynamicTag) return null;
 
   const renderedDynamicTagContent = await renderTagFromString(
     pluginData,
@@ -100,9 +92,7 @@ export async function matchAndRenderTagFromString(
     member,
   );
 
-  if (renderedDynamicTagContent == null) {
-    return null;
-  }
+  if (renderedDynamicTagContent == null) return null;
 
   return {
     renderedContent: renderedDynamicTagContent,

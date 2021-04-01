@@ -1,11 +1,8 @@
 import "./loadEnv";
 
-import path from "path";
 import yaml from "js-yaml";
 
-import fs from "fs";
 import { Knub, PluginError } from "knub";
-import { SimpleError } from "./SimpleError";
 
 import { Configs } from "./data/Configs";
 // Always use UTC internally
@@ -14,24 +11,19 @@ import moment from "moment-timezone";
 import { Client, DiscordHTTPError, TextChannel } from "eris";
 import { connect } from "./data/db";
 import { baseGuildPlugins, globalPlugins, guildPlugins } from "./plugins/availablePlugins";
-import { errorMessage, isDiscordHTTPError, isDiscordRESTError, MINUTES, successMessage } from "./utils";
+import { errorMessage, isDiscordHTTPError, isDiscordRESTError, successMessage } from "./utils";
 import { startUptimeCounter } from "./uptime";
 import { AllowedGuilds } from "./data/AllowedGuilds";
 import { ZeppelinGlobalConfig, ZeppelinGuildConfig } from "./types";
 import { RecoverablePluginError } from "./RecoverablePluginError";
 import { GuildLogs } from "./data/GuildLogs";
 import { LogType } from "./data/LogType";
-import { ZeppelinPlugin } from "./plugins/ZeppelinPlugin";
 import { logger } from "./logger";
 import { PluginLoadError } from "knub/dist/plugins/PluginLoadError";
 import { ErisError } from "./ErisError";
 
-const fsp = fs.promises;
-
 if (!process.env.KEY) {
-  // tslint:disable-next-line:no-console
-  console.error("Project root .env with KEY is required!");
-  process.exit(1);
+  throw new Error("Project root .env with KEY is required!");
 }
 
 declare global {
@@ -135,16 +127,6 @@ function errorHandler(err) {
 if (process.env.NODE_ENV === "production") {
   process.on("uncaughtException", errorHandler);
   process.on("unhandledRejection", errorHandler);
-}
-
-// Verify required Node.js version
-const REQUIRED_NODE_VERSION = "14.0.0";
-const requiredParts = REQUIRED_NODE_VERSION.split(".").map(v => parseInt(v, 10));
-const actualVersionParts = process.versions.node.split(".").map(v => parseInt(v, 10));
-for (const [i, part] of actualVersionParts.entries()) {
-  if (part > requiredParts[i]) break;
-  if (part === requiredParts[i]) continue;
-  throw new SimpleError(`Unsupported Node.js version! Must be at least ${REQUIRED_NODE_VERSION}`);
 }
 
 moment.tz.setDefault("UTC");

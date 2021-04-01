@@ -1,4 +1,4 @@
-import { Constants, GuildChannel, Member, Permission } from "eris";
+import { GuildChannel, Member, Permission } from "eris";
 import { getMissingPermissions } from "./getMissingPermissions";
 
 /**

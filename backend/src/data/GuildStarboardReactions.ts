@@ -27,9 +27,7 @@ export class GuildStarboardReactions extends BaseGuildRepository {
       },
     });
 
-    if (existingReaction) {
-      return;
-    }
+    if (existingReaction) return;
 
     await this.allStarboardReactions.insert({
       guild_id: this.guildId,

@@ -10,7 +10,7 @@ export interface IPartialPersistData {
 export class GuildPersistedData extends BaseGuildRepository {
   private persistedData: Repository<PersistedData>;
 
-  constructor(guildId) {
+  constructor(guildId: string) {
     super(guildId);
     this.persistedData = getRepository(PersistedData);
   }

@@ -4,9 +4,7 @@ import { sendErrorMessage } from "../../../pluginUtils";
 import { CasesPlugin } from "../../../plugins/Cases/CasesPlugin";
 import {
   UnknownUser,
-  multiSorter,
   trimLines,
-  createChunkedMessage,
   resolveUser,
   emptyEmbedValue,
   chunkArray,

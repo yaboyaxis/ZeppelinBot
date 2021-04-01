@@ -5,9 +5,7 @@ import { snowflakeToTimestamp } from "../../../utils/snowflakeToTimestamp";
 import moment from "moment-timezone";
 import humanizeDuration from "humanize-duration";
 import {
-  embedPadding,
   EmbedWith,
-  emptyEmbedValue,
   formatNumber,
   isGroupDMInvite,
   isGuildInvite,
@@ -44,7 +42,6 @@ export async function getInviteInfoEmbed(
     }
 
     const serverCreatedAtTimestamp = snowflakeToTimestamp(invite.guild.id);
-    const serverCreatedAt = moment.utc(serverCreatedAtTimestamp, "x");
     const serverAge = humanizeDuration(Date.now() - serverCreatedAtTimestamp, {
       largest: 2,
       round: true,
@@ -118,7 +115,6 @@ export async function getInviteInfoEmbed(
     }
 
     const channelCreatedAtTimestamp = snowflakeToTimestamp(invite.channel.id);
-    const channelCreatedAt = moment.utc(channelCreatedAtTimestamp, "x");
     const channelAge = humanizeDuration(Date.now() - channelCreatedAtTimestamp, {
       largest: 2,
       round: true,

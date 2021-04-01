@@ -26,7 +26,6 @@ import { ReloadGuildCmd } from "./commands/ReloadGuildCmd";
 import { JumboCmd } from "./commands/JumboCmd";
 import { AvatarCmd } from "./commands/AvatarCmd";
 import { CleanCmd } from "./commands/CleanCmd";
-import { Message } from "eris";
 import { InviteInfoCmd } from "./commands/InviteInfoCmd";
 import { ChannelInfoCmd } from "./commands/ChannelInfoCmd";
 import { MessageInfoCmd } from "./commands/MessageInfoCmd";

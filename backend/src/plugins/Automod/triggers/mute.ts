@@ -9,9 +9,7 @@ export const MuteTrigger = automodTrigger<MuteTriggerResultType>()({
   defaultConfig: {},
 
   async match({ context }) {
-    if (context.modAction?.type !== "mute") {
-      return;
-    }
+    if (context.modAction?.type !== "mute") return;
 
     return {
       extra: {},

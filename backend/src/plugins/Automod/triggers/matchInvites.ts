@@ -1,14 +1,11 @@
 import * as t from "io-ts";
 import { automodTrigger } from "../helpers";
 import {
-  disableCodeBlocks,
-  disableInlineCode,
   getInviteCodesInString,
   GuildInvite,
   isGuildInvite,
   resolveInvite,
   tNullable,
-  verboseChannelMention,
 } from "../../../utils";
 import { MatchableTextType, matchMultipleTextTypesOnMessage } from "../functions/matchMultipleTextTypesOnMessage";
 import { getTextMatchPartialSummary } from "../functions/getTextMatchPartialSummary";
@@ -45,9 +42,7 @@ export const MatchInvitesTrigger = automodTrigger<MatchResultType>()({
   },
 
   async match({ pluginData, context, triggerConfig: trigger }) {
-    if (!context.message) {
-      return;
-    }
+    if (!context.message) return;
 
     for await (const [type, str] of matchMultipleTextTypesOnMessage(pluginData, trigger, context.message)) {
       const inviteCodes = getInviteCodesInString(str);

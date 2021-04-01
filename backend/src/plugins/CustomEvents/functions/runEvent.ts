@@ -19,20 +19,35 @@ export async function runEvent(
 ) {
   try {
     for (const action of event.actions) {
-      if (action.type === "add_role") {
-        await addRoleAction(pluginData, action, values, event, eventData);
-      } else if (action.type === "create_case") {
-        await createCaseAction(pluginData, action, values, event, eventData);
-      } else if (action.type === "move_to_vc") {
-        await moveToVoiceChannelAction(pluginData, action, values, event, eventData);
-      } else if (action.type === "message") {
-        await messageAction(pluginData, action, values);
-      } else if (action.type === "make_role_mentionable") {
-        await makeRoleMentionableAction(pluginData, action, values, event, eventData);
-      } else if (action.type === "make_role_unmentionable") {
-        await makeRoleUnmentionableAction(pluginData, action, values, event, eventData);
-      } else if (action.type === "set_channel_permission_overrides") {
-        await setChannelPermissionOverridesAction(pluginData, action, values, event, eventData);
+      switch (action.type) {
+        case "add_role": {
+          await addRoleAction(pluginData, action, values, event, eventData);
+          break;
+        }
+        case "create_case": {
+          await createCaseAction(pluginData, action, values, event, eventData);
+          break;
+        }
+        case "move_to_vc": {
+          await moveToVoiceChannelAction(pluginData, action, values, event, eventData);
+          break;
+        }
+        case "message": {
+          await messageAction(pluginData, action, values);
+          break;
+        }
+        case "make_role_mentionable": {
+          await makeRoleMentionableAction(pluginData, action, values, event, eventData);
+          break;
+        }
+        case "make_role_unmentionable": {
+          await makeRoleUnmentionableAction(pluginData, action, values, event, eventData);
+          break;
+        }
+        case "set_channel_permission_overrides": {
+          await setChannelPermissionOverridesAction(pluginData, action, values, event, eventData);
+          break;
+        }
       }
     }
   } catch (e) {

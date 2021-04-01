@@ -9,9 +9,7 @@ export const WarnTrigger = automodTrigger<WarnTriggerResultType>()({
   defaultConfig: {},
 
   async match({ context }) {
-    if (context.modAction?.type !== "warn") {
-      return;
-    }
+    if (context.modAction?.type !== "warn") return;
 
     return {
       extra: {},

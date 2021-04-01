@@ -9,10 +9,14 @@ export function getRecentActions(
   since: number,
 ) {
   return pluginData.state.recentActions.filter(action => {
-    if (action.timestamp < since) return false;
-    if (action.type !== type) return false;
-    if (action.actionGroupId !== actionGroupId) return false;
-    if (action.userId !== userId) return false;
+    switch (true) {
+      case action.timestamp < since:
+      case action.type !== type:
+      case action.actionGroupId !== actionGroupId:
+      case action.userId !== userId: {
+        return false;
+      }
+    }
     return true;
   });
 }

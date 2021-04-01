@@ -9,9 +9,7 @@ export const BanTrigger = automodTrigger<BanTriggerResultType>()({
   defaultConfig: {},
 
   async match({ context }) {
-    if (context.modAction?.type !== "ban") {
-      return;
-    }
+    if (context.modAction?.type !== "ban") return;
 
     return {
       extra: {},

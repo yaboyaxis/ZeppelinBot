@@ -9,9 +9,7 @@ export const KickTrigger = automodTrigger<KickTriggerResultType>()({
   defaultConfig: {},
 
   async match({ context }) {
-    if (context.modAction?.type !== "kick") {
-      return;
-    }
+    if (context.modAction?.type !== "kick") return;
 
     return {
       extra: {},

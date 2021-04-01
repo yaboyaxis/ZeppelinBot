@@ -13,7 +13,7 @@ export class ApiUserInfo extends BaseRepository {
     this.apiUserInfo = getRepository(ApiUserInfoEntity);
   }
 
-  get(id) {
+  get(id: string) {
     return this.apiUserInfo.findOne({
       where: {
         id,
@@ -21,7 +21,7 @@ export class ApiUserInfo extends BaseRepository {
     });
   }
 
-  update(id, data: ApiUserInfoData) {
+  update(id: string, data: ApiUserInfoData) {
     return connection.transaction(async entityManager => {
       const repo = entityManager.getRepository(ApiUserInfoEntity);
 

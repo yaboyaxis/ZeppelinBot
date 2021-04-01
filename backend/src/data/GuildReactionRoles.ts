@@ -5,7 +5,7 @@ import { getRepository, Repository } from "typeorm";
 export class GuildReactionRoles extends BaseGuildRepository {
   private reactionRoles: Repository<ReactionRole>;
 
-  constructor(guildId) {
+  constructor(guildId: string) {
     super(guildId);
     this.reactionRoles = getRepository(ReactionRole);
   }

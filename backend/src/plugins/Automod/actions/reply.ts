@@ -43,7 +43,7 @@ export const ReplyAction = automodAction({
       const users = unique(Array.from(new Set(_contexts.map(c => c.user).filter(Boolean))));
       const user = users[0];
 
-      const renderReplyText = async str =>
+      const renderReplyText = async (str: string) =>
         renderTemplate(str, {
           user: stripObjectToScalars(user),
         });

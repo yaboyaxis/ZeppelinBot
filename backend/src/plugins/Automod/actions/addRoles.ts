@@ -3,7 +3,6 @@ import { automodAction } from "../helpers";
 import { LogType } from "../../../data/LogType";
 import { nonNullish, unique } from "../../../utils";
 import { Constants } from "eris";
-import { hasDiscordPermissions } from "../../../utils/hasDiscordPermissions";
 import { LogsPlugin } from "../../Logs/LogsPlugin";
 import { getMissingPermissions } from "../../../utils/getMissingPermissions";
 import { canAssignRole } from "../../../utils/canAssignRole";

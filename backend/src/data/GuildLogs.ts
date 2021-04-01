@@ -13,7 +13,7 @@ export class GuildLogs extends events.EventEmitter {
   protected guildId: string;
   protected ignoredLogs: IIgnoredLog[];
 
-  constructor(guildId) {
+  constructor(guildId: string) {
     if (guildInstances.has(guildId)) {
       // Return existing instance for this guild if one exists
       return guildInstances.get(guildId)!;

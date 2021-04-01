@@ -5,7 +5,6 @@ import { PluginOptions } from "knub";
 import { SetTimezoneCmd } from "./commands/SetTimezoneCmd";
 import { ViewTimezoneCmd } from "./commands/ViewTimezoneCmd";
 import { defaultDateFormats } from "./defaultDateFormats";
-import { Tail } from "../../utils/typeUtils";
 import { inGuildTz } from "./functions/inGuildTz";
 import { mapToPublicFn } from "../../pluginUtils";
 import { getGuildTz } from "./functions/getGuildTz";

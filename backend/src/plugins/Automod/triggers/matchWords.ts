@@ -1,7 +1,7 @@
 import * as t from "io-ts";
 import escapeStringRegexp from "escape-string-regexp";
 import { automodTrigger } from "../helpers";
-import { disableInlineCode, verboseChannelMention } from "../../../utils";
+import { disableInlineCode } from "../../../utils";
 import { MatchableTextType, matchMultipleTextTypesOnMessage } from "../functions/matchMultipleTextTypesOnMessage";
 import { getTextMatchPartialSummary } from "../functions/getTextMatchPartialSummary";
 import { normalizeText } from "../../../utils/normalizeText";
@@ -50,13 +50,8 @@ export const MatchWordsTrigger = automodTrigger<MatchResultType>()({
     }
 
     for await (let [type, str] of matchMultipleTextTypesOnMessage(pluginData, trigger, context.message)) {
-      if (trigger.strip_markdown) {
-        str = stripMarkdown(str);
-      }
-
-      if (trigger.normalize) {
-        str = normalizeText(str);
-      }
+      if (trigger.strip_markdown) str = stripMarkdown(str);
+      if (trigger.normalize) str = normalizeText(str);
 
       const looseMatchingThreshold = Math.min(Math.max(trigger.loose_matching_threshold, 1), 64);
 

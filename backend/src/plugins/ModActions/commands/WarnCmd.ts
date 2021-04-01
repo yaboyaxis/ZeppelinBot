@@ -1,12 +1,10 @@
 import { modActionsCmd } from "../types";
 import { commandTypeHelpers as ct } from "../../../commandTypes";
-import { Case } from "../../../data/entities/Case";
 import { canActOn, hasPermission, sendErrorMessage, sendSuccessMessage } from "../../../pluginUtils";
 import { formatReasonWithAttachments } from "../functions/formatReasonWithAttachments";
 import { CasesPlugin } from "../../Cases/CasesPlugin";
-import { LogType } from "../../../data/LogType";
 import { CaseTypes } from "../../../data/CaseTypes";
-import { errorMessage, resolveMember, resolveUser, stripObjectToScalars } from "../../../utils";
+import { errorMessage, resolveMember, resolveUser } from "../../../utils";
 import { isBanned } from "../functions/isBanned";
 import { waitForReaction } from "knub/dist/helpers";
 import { readContactMethodsFromArgs } from "../functions/readContactMethodsFromArgs";

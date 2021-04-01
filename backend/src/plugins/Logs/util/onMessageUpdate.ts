@@ -42,9 +42,7 @@ export async function onMessageUpdate(
     logUpdate = true;
   }
 
-  if (!logUpdate) {
-    return;
-  }
+  if (!logUpdate) return;
 
   const user = await resolveUser(pluginData.client, savedMessage.user_id);
   const channel = pluginData.guild.channels.get(savedMessage.channel_id);

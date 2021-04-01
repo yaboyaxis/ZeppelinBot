@@ -5,7 +5,7 @@ import { AutoReaction } from "./entities/AutoReaction";
 export class GuildAutoReactions extends BaseGuildRepository {
   private autoReactions: Repository<AutoReaction>;
 
-  constructor(guildId) {
+  constructor(guildId: string) {
     super(guildId);
     this.autoReactions = getRepository(AutoReaction);
   }

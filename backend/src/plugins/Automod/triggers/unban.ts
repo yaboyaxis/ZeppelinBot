@@ -9,9 +9,7 @@ export const UnbanTrigger = automodTrigger<UnbanTriggerResultType>()({
   defaultConfig: {},
 
   async match({ context }) {
-    if (context.modAction?.type !== "unban") {
-      return;
-    }
+    if (context.modAction?.type !== "unban") return;
 
     return {
       extra: {},

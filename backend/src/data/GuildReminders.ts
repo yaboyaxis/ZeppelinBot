@@ -5,7 +5,7 @@ import { Reminder } from "./entities/Reminder";
 export class GuildReminders extends BaseGuildRepository {
   private reminders: Repository<Reminder>;
 
-  constructor(guildId) {
+  constructor(guildId: string) {
     super(guildId);
     this.reminders = getRepository(Reminder);
   }

@@ -2,14 +2,12 @@ import { utilityCmd } from "../types";
 import { commandTypeHelpers as ct } from "../../../commandTypes";
 import {
   channelMentionRegex,
-  errorMessage,
   isSnowflake,
-  resolveMember,
   simpleClosestStringMatch,
   stripObjectToScalars,
 } from "../../../utils";
 import { canActOn, sendErrorMessage, sendSuccessMessage } from "../../../pluginUtils";
-import { Member, VoiceChannel } from "eris";
+import { VoiceChannel } from "eris";
 import { LogType } from "../../../data/LogType";
 
 export const VcmoveCmd = utilityCmd({

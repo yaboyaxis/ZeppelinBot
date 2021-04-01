@@ -96,5 +96,8 @@
     "require": [
       "./register-tsconfig-paths.js"
     ]
+  },
+  "engines": {
+    "node": ">=14.0.0"
   }
 }

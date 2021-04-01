@@ -2,18 +2,14 @@ import { Case } from "./entities/Case";
 import { CaseNote } from "./entities/CaseNote";
 import { BaseGuildRepository } from "./BaseGuildRepository";
 import { getRepository, In, Repository } from "typeorm";
-import { DBDateFormat, disableLinkPreviews } from "../utils";
 import { CaseTypes } from "./CaseTypes";
-import moment = require("moment-timezone");
 import { connection } from "./db";
-
-const CASE_SUMMARY_REASON_MAX_LENGTH = 300;
 
 export class GuildCases extends BaseGuildRepository {
   private cases: Repository<Case>;
   private caseNotes: Repository<CaseNote>;
 
-  constructor(guildId) {
+  constructor(guildId: string) {
     super(guildId);
     this.cases = getRepository(Case);
     this.caseNotes = getRepository(CaseNote);

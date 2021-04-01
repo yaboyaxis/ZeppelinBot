@@ -1,10 +1,6 @@
 import { utilityCmd } from "../types";
 import { commandTypeHelpers as ct } from "../../../commandTypes";
 import {
-  channelMentionRegex,
-  errorMessage,
-  isSnowflake,
-  simpleClosestStringMatch,
   stripObjectToScalars,
 } from "../../../utils";
 import { canActOn, sendErrorMessage, sendSuccessMessage } from "../../../pluginUtils";
@@ -32,7 +28,7 @@ export const VcdisconnectCmd = utilityCmd({
       sendErrorMessage(pluginData, msg.channel, "Member is not in a voice channel");
       return;
     }
-    const channel = (await resolveChannel(pluginData.guild, args.member.voiceState.channelID)) as VoiceChannel;
+    const channel = (resolveChannel(pluginData.guild, args.member.voiceState.channelID)) as VoiceChannel;
 
     try {
       await args.member.edit({

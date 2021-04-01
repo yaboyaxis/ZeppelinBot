@@ -11,7 +11,7 @@ import {
   resolveUser,
   trimLines,
 } from "../../../utils";
-import { CategoryChannel, EmbedOptions, Guild, TextChannel, VoiceChannel } from "eris";
+import { CategoryChannel, EmbedOptions, TextChannel, VoiceChannel } from "eris";
 import moment from "moment-timezone";
 import humanizeDuration from "humanize-duration";
 import { getGuildPreview } from "./getGuildPreview";
@@ -30,9 +30,7 @@ export async function getServerInfoEmbed(
     getGuildPreview(pluginData.client, serverId),
   ]);
 
-  if (!restGuild && !guildPreview) {
-    return null;
-  }
+  if (!restGuild && !guildPreview) return null;
 
   const features = (restGuild || guildPreview)!.features;
   if (!thisServer && !features.includes("DISCOVERABLE")) {

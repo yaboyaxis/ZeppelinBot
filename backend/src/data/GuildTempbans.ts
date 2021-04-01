@@ -1,13 +1,12 @@
 import moment from "moment-timezone";
-import { Mute } from "./entities/Mute";
 import { BaseGuildRepository } from "./BaseGuildRepository";
-import { Brackets, getRepository, Repository } from "typeorm";
+import { getRepository, Repository } from "typeorm";
 import { Tempban } from "./entities/Tempban";
 
 export class GuildTempbans extends BaseGuildRepository {
   private tempbans: Repository<Tempban>;
 
-  constructor(guildId) {
+  constructor(guildId: string) {
     super(guildId);
     this.tempbans = getRepository(Tempban);
   }

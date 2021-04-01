@@ -1,6 +1,6 @@
-import { disableInlineCode, isSnowflake } from "../utils";
+import { isSnowflake } from "../utils";
 import { getChannelIdFromMessageId } from "../data/getChannelIdFromMessageId";
-import { GuildPluginData, TypeConversionError } from "knub";
+import { GuildPluginData } from "knub";
 import { TextChannel } from "eris";
 
 const channelAndMessageIdRegex = /^(\d+)[\-\/](\d+)$/;

@@ -15,9 +15,7 @@ export const MemberJoinSpamTrigger = automodTrigger<unknown>()({
   defaultConfig: {},
 
   async match({ pluginData, context, triggerConfig }) {
-    if (!context.joined || !context.member) {
-      return;
-    }
+    if (!context.joined || !context.member) return;
 
     const recentSpam = findRecentSpam(pluginData, RecentActionType.MemberJoin);
     if (recentSpam) {

@@ -5,7 +5,7 @@ export class GuildEvents extends BaseGuildRepository {
   private queuedEventEmitter: QueuedEventEmitter;
   private pluginListeners: Map<string, Map<string, any[]>>;
 
-  constructor(guildId) {
+  constructor(guildId: string) {
     super(guildId);
     this.queuedEventEmitter = new QueuedEventEmitter();
   }

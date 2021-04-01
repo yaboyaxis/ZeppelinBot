@@ -9,9 +9,7 @@ export const NoteTrigger = automodTrigger<NoteTriggerResultType>()({
   defaultConfig: {},
 
   async match({ context }) {
-    if (context.modAction?.type !== "note") {
-      return;
-    }
+    if (context.modAction?.type !== "note") return;
 
     return {
       extra: {},

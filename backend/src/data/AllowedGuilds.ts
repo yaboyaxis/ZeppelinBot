@@ -11,7 +11,7 @@ export class AllowedGuilds extends BaseRepository {
     this.allowedGuilds = getRepository(AllowedGuild);
   }
 
-  async isAllowed(guildId) {
+  async isAllowed(guildId: string) {
     const count = await this.allowedGuilds.count({
       where: {
         id: guildId,
@@ -20,11 +20,11 @@ export class AllowedGuilds extends BaseRepository {
     return count !== 0;
   }
 
-  find(guildId) {
+  find(guildId: string) {
     return this.allowedGuilds.findOne(guildId);
   }
 
-  getForApiUser(userId) {
+  getForApiUser(userId: string) {
     return this.allowedGuilds
       .createQueryBuilder("allowed_guilds")
       .innerJoin(
@@ -36,11 +36,11 @@ export class AllowedGuilds extends BaseRepository {
       .getMany();
   }
 
-  updateInfo(id, name, icon, ownerId) {
+  updateInfo(id: string, name: string, icon: string | null, ownerId: string) {
     return this.allowedGuilds.update({ id }, { name, icon, owner_id: ownerId });
   }
 
-  add(id, data: Partial<Omit<AllowedGuild, "id">> = {}) {
+  add(id: string, data: Partial<Omit<AllowedGuild, "id">> = {}) {
     return this.allowedGuilds.insert({
       name: "Server",
       icon: null,
@@ -50,7 +50,7 @@ export class AllowedGuilds extends BaseRepository {
     });
   }
 
-  remove(id) {
+  remove(id: string) {
     return this.allowedGuilds.delete({ id });
   }
 }

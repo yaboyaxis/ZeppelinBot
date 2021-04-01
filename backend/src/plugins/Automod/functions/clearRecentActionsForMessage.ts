@@ -1,7 +1,5 @@
 import { AutomodContext, AutomodPluginType } from "../types";
 import { GuildPluginData } from "knub";
-import { RECENT_ACTION_EXPIRY_TIME, RecentActionType } from "../constants";
-import { getEmojiInString, getRoleMentions, getUrlsInString, getUserMentions } from "../../../utils";
 
 export function clearRecentActionsForMessage(pluginData: GuildPluginData<AutomodPluginType>, context: AutomodContext) {
   const message = context.message!;

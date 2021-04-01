@@ -72,15 +72,24 @@ export const RolesCmd = utilityCmd({
       sortDir = "DESC";
     }
 
-    if (sort === "position" || sort === "order") {
-      roles.sort(sorter("position", sortDir));
-    } else if (sort === "memberCount" && args.counts) {
-      roles.sort(sorter("_memberCount", sortDir));
-    } else if (sort === "name") {
-      roles.sort(sorter(r => r.name.toLowerCase(), sortDir));
-    } else {
-      sendErrorMessage(pluginData, msg.channel, "Unknown sorting method");
-      return;
+    switch (sort) { 
+      case "position" || "order": {
+        roles.sort(sorter("position", sortDir));
+        break;
+      }
+      case "memberCount": {
+        if (!args.counts) break;
+        roles.sort(sorter("_memberCount", sortDir));
+        break;
+      }
+      case "name": {
+        roles.sort(sorter(r => r.name.toLowerCase(), sortDir));
+        break;
+      }
+      default: {
+        sendErrorMessage(pluginData, msg.channel, "Unknown sorting method");
+        return;
+      }
     }
 
     const longestId = roles.reduce((longest, role) => Math.max(longest, role.id.length), 0);

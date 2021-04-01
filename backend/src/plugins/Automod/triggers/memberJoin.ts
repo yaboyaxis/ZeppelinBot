@@ -14,9 +14,7 @@ export const MemberJoinTrigger = automodTrigger<unknown>()({
   },
 
   async match({ pluginData, context, triggerConfig }) {
-    if (!context.joined || !context.member) {
-      return;
-    }
+    if (!context.joined || !context.member) return;
 
     if (triggerConfig.only_new) {
       const threshold = Date.now() - convertDelayStringToMS(triggerConfig.new_threshold)!;

@@ -40,18 +40,11 @@ export const MatchRegexTrigger = automodTrigger<MatchResultType>()({
   },
 
   async match({ pluginData, context, triggerConfig: trigger }) {
-    if (!context.message) {
-      return;
-    }
+    if (!context.message) return;
 
     for await (let [type, str] of matchMultipleTextTypesOnMessage(pluginData, trigger, context.message)) {
-      if (trigger.strip_markdown) {
-        str = stripMarkdown(str);
-      }
-
-      if (trigger.normalize) {
-        str = normalizeText(str);
-      }
+      if (trigger.strip_markdown) str = stripMarkdown(str);
+      if (trigger.normalize) str = normalizeText(str);
 
       for (const sourceRegex of trigger.patterns) {
         const regex = new RegExp(sourceRegex.source, trigger.case_sensitive && !sourceRegex.ignoreCase ? "" : "i");

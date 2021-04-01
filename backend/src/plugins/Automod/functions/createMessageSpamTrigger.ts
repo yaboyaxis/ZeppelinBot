@@ -14,7 +14,6 @@ const MessageSpamTriggerConfig = t.type({
   within: tDelayString,
   per_channel: tNullable(t.boolean),
 });
-type TMessageSpamTriggerConfig = t.TypeOf<typeof MessageSpamTriggerConfig>;
 
 interface TMessageSpamMatchResultType {
   archiveId: string;
@@ -26,9 +25,7 @@ export function createMessageSpamTrigger(spamType: RecentActionType, prettyName:
     defaultConfig: {},
 
     async match({ pluginData, context, triggerConfig }) {
-      if (!context.message) {
-        return;
-      }
+      if (!context.message) return;
 
       const spamIdentifier = getMessageSpamIdentifier(context.message, Boolean(triggerConfig.per_channel));
 

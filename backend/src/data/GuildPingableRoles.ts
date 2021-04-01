@@ -5,7 +5,7 @@ import { PingableRole } from "./entities/PingableRole";
 export class GuildPingableRoles extends BaseGuildRepository {
   private pingableRoles: Repository<PingableRole>;
 
-  constructor(guildId) {
+  constructor(guildId: string) {
     super(guildId);
     this.pingableRoles = getRepository(PingableRole);
   }

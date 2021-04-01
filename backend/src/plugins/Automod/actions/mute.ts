@@ -2,16 +2,13 @@ import * as t from "io-ts";
 import { automodAction } from "../helpers";
 import { LogType } from "../../../data/LogType";
 import {
-  asyncMap,
   convertDelayStringToMS,
   nonNullish,
-  resolveMember,
   tDelayString,
   tNullable,
   unique,
 } from "../../../utils";
 import { resolveActionContactMethods } from "../functions/resolveActionContactMethods";
-import { ModActionsPlugin } from "../../ModActions/ModActionsPlugin";
 import { MutesPlugin } from "../../Mutes/MutesPlugin";
 import { ERRORS, RecoverablePluginError } from "../../../RecoverablePluginError";
 import { LogsPlugin } from "../../Logs/LogsPlugin";

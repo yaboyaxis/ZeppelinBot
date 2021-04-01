@@ -3,7 +3,6 @@ import {
   convertDelayStringToMS,
   disableCodeBlocks,
   disableInlineCode,
-  isSnowflake,
   isValidSnowflake,
   resolveMember,
   resolveUser,
@@ -11,10 +10,9 @@ import {
   roleMentionRegex,
   UnknownUser,
 } from "./utils";
-import { GuildChannel, Member, TextChannel, User } from "eris";
+import { GuildChannel, Member, User } from "eris";
 import { baseTypeConverters, baseTypeHelpers, CommandContext, TypeConversionError } from "knub";
 import { createTypeHelper } from "knub-command-manager";
-import { getChannelIdFromMessageId } from "./data/getChannelIdFromMessageId";
 import { MessageTarget, resolveMessageTarget } from "./utils/resolveMessageTarget";
 import { inputPatternToRegExp } from "./validatorUtils";
 import { isValidTimezone } from "./utils/isValidTimezone";
@@ -22,7 +20,7 @@ import { isValidTimezone } from "./utils/isValidTimezone";
 export const commandTypes = {
   ...baseTypeConverters,
 
-  delay(value) {
+  delay(value: number) {
     const result = convertDelayStringToMS(value);
     if (result == null) {
       throw new TypeConversionError(`Could not convert ${value} to a delay`);

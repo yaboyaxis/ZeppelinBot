@@ -22,7 +22,7 @@ export const MAX_NICKNAME_ENTRIES_PER_USER = 10;
 export class GuildNicknameHistory extends BaseGuildRepository {
   private nicknameHistory: Repository<NicknameHistoryEntry>;
 
-  constructor(guildId) {
+  constructor(guildId: string) {
     super(guildId);
     this.nicknameHistory = getRepository(NicknameHistoryEntry);
   }

@@ -6,7 +6,7 @@ import { Brackets, getRepository, Repository } from "typeorm";
 export class GuildMutes extends BaseGuildRepository {
   private mutes: Repository<Mute>;
 
-  constructor(guildId) {
+  constructor(guildId: string) {
     super(guildId);
     this.mutes = getRepository(Mute);
   }

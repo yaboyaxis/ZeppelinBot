@@ -57,57 +57,66 @@ export const SlowmodeSetCmd = slowmodeCmd({
     }
 
     // Validate durations
-    if (mode === "native" && args.time > MAX_NATIVE_SLOWMODE) {
-      sendErrorMessage(pluginData, msg.channel, "Native slowmode can only be set to 6h or less");
-      return;
-    }
-
-    if (mode === "bot" && args.time > MAX_BOT_SLOWMODE) {
-      sendErrorMessage(
-        pluginData,
-        msg.channel,
-        `Sorry, bot managed slowmodes can be at most 100 years long. Maybe 99 would be enough?`,
-      );
-      return;
-    }
-
-    if (mode === "bot" && args.time < MIN_BOT_SLOWMODE) {
-      sendErrorMessage(
-        pluginData,
-        msg.channel,
-        asSingleLine(`
-          Bot managed slowmode must be 15min or more.
-          Use \`--mode native\` to use native slowmodes for short slowmodes instead.
-        `),
-      );
-      return;
+    switch (mode) {
+      case "native": {
+        if (args.time > MAX_NATIVE_SLOWMODE) {
+          sendErrorMessage(pluginData, msg.channel, "Native slowmode can only be set to 6h or less");
+          return;
+        }
+        break;
+      }
+      case "bot": {
+        if (args.time > MAX_BOT_SLOWMODE) {
+          sendErrorMessage(
+            pluginData,
+            msg.channel,
+            `Sorry, bot managed slowmodes can be at most 100 years long. Maybe 99 would be enough?`,
+          );
+          return;
+        }
+        if (args.time < MIN_BOT_SLOWMODE) {
+          sendErrorMessage(
+            pluginData,
+            msg.channel,
+            asSingleLine(`
+              Bot managed slowmode must be 15min or more.
+              Use \`--mode native\` to use native slowmodes for short slowmodes instead.
+            `),
+          );
+          return;
+        }
+        break;
+      }
     }
 
     // Verify permissions
     const channelPermissions = channel.permissionsOf(pluginData.client.user.id);
 
-    if (mode === "native") {
-      const missingPermissions = getMissingPermissions(channelPermissions, NATIVE_SLOWMODE_PERMISSIONS);
-      if (missingPermissions) {
-        sendErrorMessage(
-          pluginData,
-          msg.channel,
-          `Unable to set native slowmode. ${missingPermissionError(missingPermissions)}`,
-        );
-        return;
+    switch (mode) {
+      case "native": {
+        const missingPermissions = getMissingPermissions(channelPermissions, NATIVE_SLOWMODE_PERMISSIONS);
+        if (missingPermissions) {
+          sendErrorMessage(
+            pluginData,
+            msg.channel,
+            `Unable to set native slowmode. ${missingPermissionError(missingPermissions)}`,
+          );
+          return;
+        }
+        break;
       }
-    }
-
-    if (mode === "bot") {
-      const missingPermissions = getMissingPermissions(channelPermissions, BOT_SLOWMODE_PERMISSIONS);
-      if (missingPermissions) {
-        sendErrorMessage(
-          pluginData,
-          msg.channel,
-          `Unable to set bot managed slowmode. ${missingPermissionError(missingPermissions)}`,
-        );
-        return;
+      case "bot": {
+        const missingPermissions = getMissingPermissions(channelPermissions, BOT_SLOWMODE_PERMISSIONS);
+        if (missingPermissions) {
+          sendErrorMessage(
+            pluginData,
+            msg.channel,
+            `Unable to set bot managed slowmode. ${missingPermissionError(missingPermissions)}`,
+          );
+          return;
+        }
       }
+      break;
     }
 
     // Apply the slowmode!

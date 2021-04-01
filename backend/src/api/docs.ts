@@ -4,28 +4,36 @@ import { notFound } from "./responses";
 import { indentLines } from "../utils";
 
 function formatConfigSchema(schema) {
-  if (schema._tag === "InterfaceType" || schema._tag === "PartialType") {
-    return (
-      `{\n` +
-      Object.entries(schema.props)
-        .map(([k, value]) => indentLines(`${k}: ${formatConfigSchema(value)}`, 2))
-        .join("\n") +
-      "\n}"
-    );
-  } else if (schema._tag === "DictionaryType") {
-    return "{\n" + indentLines(`[string]: ${formatConfigSchema(schema.codomain)}`, 2) + "\n}";
-  } else if (schema._tag === "ArrayType") {
-    return `Array<${formatConfigSchema(schema.type)}>`;
-  } else if (schema._tag === "UnionType") {
-    if (schema.name.startsWith("Nullable<")) {
-      return `Nullable<${formatConfigSchema(schema.types[0])}>`;
-    } else {
-      return schema.types.map(t => formatConfigSchema(t)).join(" | ");
+  switch (schema._tag) {
+    case "InterfaceType":
+    case "PartialType": {
+      return (
+        `{\n` +
+        Object.entries(schema.props)
+          .map(([k, value]) => indentLines(`${k}: ${formatConfigSchema(value)}`, 2))
+          .join("\n") +
+        "\n}"
+      );
     }
-  } else if (schema._tag === "IntersectionType") {
-    return schema.types.map(t => formatConfigSchema(t)).join(" & ");
-  } else {
-    return schema.name;
+    case "DictionaryType": {
+      return "{\n" + indentLines(`[string]: ${formatConfigSchema(schema.codomain)}`, 2) + "\n}";
+    }
+    case "ArrayType": {
+      return `Array<${formatConfigSchema(schema.type)}>`;
+    }
+    case "UnionType": {
+      if (schema.name.startsWith("Nullable<")) {
+        return `Nullable<${formatConfigSchema(schema.types[0])}>`;
+      } else {
+        return schema.types.map(t => formatConfigSchema(t)).join(" | ");
+      }
+    }
+    case "IntersectionType": {
+      return schema.types.map(t => formatConfigSchema(t)).join(" & ");
+    }
+    default: {
+      return schema.name;
+    }
   }
 }
 

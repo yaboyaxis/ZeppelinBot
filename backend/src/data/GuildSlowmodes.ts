@@ -8,7 +8,7 @@ export class GuildSlowmodes extends BaseGuildRepository {
   private slowmodeChannels: Repository<SlowmodeChannel>;
   private slowmodeUsers: Repository<SlowmodeUser>;
 
-  constructor(guildId) {
+  constructor(guildId: string) {
     super(guildId);
     this.slowmodeChannels = getRepository(SlowmodeChannel);
     this.slowmodeUsers = getRepository(SlowmodeUser);

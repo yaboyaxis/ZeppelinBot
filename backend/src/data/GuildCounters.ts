@@ -1,5 +1,5 @@
 import { BaseGuildRepository } from "./BaseGuildRepository";
-import { getRepository, In, IsNull, LessThan, Not, Repository } from "typeorm";
+import { getRepository, In, IsNull, Not, Repository } from "typeorm";
 import { Counter } from "./entities/Counter";
 import { CounterValue } from "./entities/CounterValue";
 import { CounterTrigger, TRIGGER_COMPARISON_OPS, TriggerComparisonOp } from "./entities/CounterTrigger";
@@ -72,7 +72,7 @@ export class GuildCounters extends BaseGuildRepository {
   private counterTriggers: Repository<CounterTrigger>;
   private counterTriggerStates: Repository<CounterTriggerState>;
 
-  constructor(guildId) {
+  constructor(guildId: string) {
     super(guildId);
     this.counters = getRepository(Counter);
     this.counterValues = getRepository(CounterValue);

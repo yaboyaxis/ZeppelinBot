@@ -1,4 +1,4 @@
-import { Member, Message, TextChannel, User } from "eris";
+import { Member, TextChannel, User } from "eris";
 import { asSingleLine, isDiscordRESTError, UnknownUser } from "../../../utils";
 import { hasPermission, sendErrorMessage, sendSuccessMessage } from "../../../pluginUtils";
 import { GuildPluginData } from "knub";

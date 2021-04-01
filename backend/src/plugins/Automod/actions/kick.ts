@@ -1,6 +1,5 @@
 import * as t from "io-ts";
 import { automodAction } from "../helpers";
-import { LogType } from "../../../data/LogType";
 import { asyncMap, nonNullish, resolveMember, tNullable, unique } from "../../../utils";
 import { resolveActionContactMethods } from "../functions/resolveActionContactMethods";
 import { ModActionsPlugin } from "../../ModActions/ModActionsPlugin";
@@ -31,7 +30,7 @@ export const KickAction = automodAction({
     const modActions = pluginData.getPlugin(ModActionsPlugin);
     for (const member of membersToKick) {
       if (!member) continue;
-      await modActions.kickMember(member, reason, { contactMethods, caseArgs });
+      modActions.kickMember(member, reason, { contactMethods, caseArgs });
     }
   },
 });

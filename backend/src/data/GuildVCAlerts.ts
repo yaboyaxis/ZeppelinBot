@@ -5,7 +5,7 @@ import { VCAlert } from "./entities/VCAlert";
 export class GuildVCAlerts extends BaseGuildRepository {
   private allAlerts: Repository<VCAlert>;
 
-  constructor(guildId) {
+  constructor(guildId: string) {
     super(guildId);
     this.allAlerts = getRepository(VCAlert);
   }

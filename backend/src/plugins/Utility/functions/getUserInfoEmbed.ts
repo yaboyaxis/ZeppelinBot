@@ -1,10 +1,9 @@
-import { Message, GuildTextableChannel, EmbedOptions, Role } from "eris";
+import { EmbedOptions, Role } from "eris";
 import { GuildPluginData } from "knub";
 import { UtilityPluginType } from "../types";
 import {
   UnknownUser,
   trimLines,
-  embedPadding,
   resolveMember,
   resolveUser,
   preEmbedPadding,

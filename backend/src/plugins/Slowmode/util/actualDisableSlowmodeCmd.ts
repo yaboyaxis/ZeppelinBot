@@ -36,9 +36,7 @@ export async function actualDisableSlowmodeCmd(msg: Message, args, pluginData) {
   }
 
   // Disable native slowmode
-  if (hasNativeSlowmode) {
-    await args.channel.edit({ rateLimitPerUser: 0 });
-  }
+  if (hasNativeSlowmode) await args.channel.edit({ rateLimitPerUser: 0 });
 
   if (failedUsers.length) {
     sendSuccessMessage(

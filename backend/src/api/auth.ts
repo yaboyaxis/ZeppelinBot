@@ -50,20 +50,19 @@ function simpleDiscordAPIRequest(bearerToken, path): Promise<any> {
 export function initAuth(app: express.Express) {
   app.use(passport.initialize());
 
-  if (!process.env.CLIENT_ID) {
-    throw new Error("Auth: CLIENT ID missing");
-  }
-
-  if (!process.env.CLIENT_SECRET) {
-    throw new Error("Auth: CLIENT SECRET missing");
-  }
-
-  if (!process.env.OAUTH_CALLBACK_URL) {
-    throw new Error("Auth: OAUTH CALLBACK URL missing");
-  }
-
-  if (!process.env.DASHBOARD_URL) {
-    throw new Error("DASHBOARD_URL missing!");
+  switch (undefined) {
+    case process.env.CLIENT_ID: {
+      throw new Error("Auth: CLIENT ID missing");
+    }
+    case process.env.CLIENT_SECRET: {
+      throw new Error("Auth: CLIENT SECRET missing");
+    }
+    case process.env.OAUTH_CALLBACK_URL: {
+      throw new Error("Auth: OAUTH CALLBACK URL missing");
+    }
+    case process.env.DASHBOARD_URL: {
+      throw new Error("DASHBOARD_URL missing!");
+    }
   }
 
   passport.serializeUser((user, done) => done(null, user));
@@ -96,9 +95,9 @@ export function initAuth(app: express.Express) {
       {
         authorizationURL: "https://discord.com/api/oauth2/authorize",
         tokenURL: "https://discord.com/api/oauth2/token",
-        clientID: process.env.CLIENT_ID,
-        clientSecret: process.env.CLIENT_SECRET,
-        callbackURL: process.env.OAUTH_CALLBACK_URL,
+        clientID: process.env.CLIENT_ID!,
+        clientSecret: process.env.CLIENT_SECRET!,
+        callbackURL: process.env.OAUTH_CALLBACK_URL!,
         scope: ["identify"],
       },
       async (accessToken, refreshToken, profile, cb) => {

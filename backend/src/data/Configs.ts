@@ -40,7 +40,7 @@ export class Configs extends BaseRepository {
     return (rows.length && rows[0].highest_id) || 0;
   }
 
-  getActiveLargerThanId(id) {
+  getActiveLargerThanId(id: number) {
     return this.configs
       .createQueryBuilder()
       .where("id > :id", { id })
@@ -48,11 +48,11 @@ export class Configs extends BaseRepository {
       .getMany();
   }
 
-  async hasConfig(key) {
+  async hasConfig(key: string) {
     return (await this.getActiveByKey(key)) != null;
   }
 
-  getRevisions(key, num = 10) {
+  getRevisions(key: string, num = 10) {
     return this.configs.find({
       relations: this.getRelations(),
       where: { key },
@@ -64,7 +64,7 @@ export class Configs extends BaseRepository {
     });
   }
 
-  async saveNewRevision(key, config, editedBy) {
+  async saveNewRevision(key: string, config, editedBy: string) {
     return connection.transaction(async entityManager => {
       const repo = entityManager.getRepository(Config);
       // Mark all old revisions inactive

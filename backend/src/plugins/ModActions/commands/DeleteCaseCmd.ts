@@ -7,7 +7,6 @@ import { TextChannel } from "eris";
 import { SECONDS, stripObjectToScalars, trimLines } from "../../../utils";
 import { LogsPlugin } from "../../Logs/LogsPlugin";
 import { LogType } from "../../../data/LogType";
-import moment from "moment-timezone";
 import { TimeAndDatePlugin } from "../../TimeAndDate/TimeAndDatePlugin";
 import { Case } from "../../../data/entities/Case";
 

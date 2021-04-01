@@ -29,9 +29,7 @@ export async function onMessageCreate(pluginData: GuildPluginData<TagsPluginType
     categoryId: channel.parentID,
   });
 
-  if (!tagResult) {
-    return;
-  }
+  if (!tagResult) return;
 
   // Check for cooldowns
   const cooldowns: any[] = [];
@@ -84,7 +82,7 @@ export async function onMessageCreate(pluginData: GuildPluginData<TagsPluginType
     pluginData.cooldowns.setCooldown(cd[0], cd[1]);
   }
 
-  const validationError = await validate(tStrictMessageContent, tagResult.renderedContent);
+  const validationError = validate(tStrictMessageContent, tagResult.renderedContent);
   if (validationError) {
     pluginData.state.logs.log(LogType.BOT_ALERT, {
       body: `Rendering tag ${tagResult.tagName} resulted in an invalid message: ${validationError.message}`,

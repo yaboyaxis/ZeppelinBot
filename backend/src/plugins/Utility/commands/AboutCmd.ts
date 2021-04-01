@@ -4,7 +4,6 @@ import { GuildChannel, MessageContent, Role } from "eris";
 import { getCurrentUptime } from "../../../uptime";
 import humanizeDuration from "humanize-duration";
 import LCL from "last-commit-log";
-import path from "path";
 import moment from "moment-timezone";
 import { rootDir } from "../../../paths";
 import { TimeAndDatePlugin } from "../../TimeAndDate/TimeAndDatePlugin";

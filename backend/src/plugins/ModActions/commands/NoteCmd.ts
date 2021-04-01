@@ -1,6 +1,5 @@
 import { modActionsCmd } from "../types";
 import { commandTypeHelpers as ct } from "../../../commandTypes";
-import { Case } from "../../../data/entities/Case";
 import { sendErrorMessage, sendSuccessMessage } from "../../../pluginUtils";
 import { formatReasonWithAttachments } from "../functions/formatReasonWithAttachments";
 import { CasesPlugin } from "../../Cases/CasesPlugin";

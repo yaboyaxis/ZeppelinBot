@@ -16,7 +16,7 @@ export class ApiPermissionAssignments extends BaseRepository {
     this.apiPermissions = getRepository(ApiPermissionAssignment);
   }
 
-  getByGuildId(guildId) {
+  getByGuildId(guildId: string) {
     return this.apiPermissions.find({
       where: {
         guild_id: guildId,
@@ -24,7 +24,7 @@ export class ApiPermissionAssignments extends BaseRepository {
     });
   }
 
-  getByUserId(userId) {
+  getByUserId(userId: string) {
     return this.apiPermissions.find({
       where: {
         type: ApiPermissionTypes.User,
@@ -33,7 +33,7 @@ export class ApiPermissionAssignments extends BaseRepository {
     });
   }
 
-  getByGuildAndUserId(guildId, userId) {
+  getByGuildAndUserId(guildId: string, userId: string) {
     return this.apiPermissions.findOne({
       where: {
         guild_id: guildId,
@@ -43,7 +43,7 @@ export class ApiPermissionAssignments extends BaseRepository {
     });
   }
 
-  addUser(guildId, userId, permissions: ApiPermissions[]) {
+  addUser(guildId: string, userId: string, permissions: ApiPermissions[]) {
     return this.apiPermissions.insert({
       guild_id: guildId,
       type: ApiPermissionTypes.User,
@@ -52,7 +52,7 @@ export class ApiPermissionAssignments extends BaseRepository {
     });
   }
 
-  removeUser(guildId, userId) {
+  removeUser(guildId: string, userId: string) {
     return this.apiPermissions.delete({ guild_id: guildId, type: ApiPermissionTypes.User, target_id: userId });
   }
 }

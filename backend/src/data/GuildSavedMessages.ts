@@ -26,7 +26,7 @@ export class GuildSavedMessages extends BaseGuildRepository {
 
   public events: QueuedEventEmitter;
 
-  constructor(guildId) {
+  constructor(guildId: string) {
     super(guildId);
     this.messages = getRepository(SavedMessage);
     this.events = new QueuedEventEmitter();

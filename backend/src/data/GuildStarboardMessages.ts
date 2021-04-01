@@ -5,7 +5,7 @@ import { StarboardMessage } from "./entities/StarboardMessage";
 export class GuildStarboardMessages extends BaseGuildRepository {
   private allStarboardMessages: Repository<StarboardMessage>;
 
-  constructor(guildId) {
+  constructor(guildId: string) {
     super(guildId);
     this.allStarboardMessages = getRepository(StarboardMessage);
   }

@@ -75,7 +75,7 @@ export class ApiLogins extends BaseRepository {
     return `${loginId}.${token}`;
   }
 
-  expireApiKey(apiKey) {
+  expireApiKey(apiKey: string) {
     const [loginId, token] = apiKey.split(".");
     if (!loginId || !token) return;
 

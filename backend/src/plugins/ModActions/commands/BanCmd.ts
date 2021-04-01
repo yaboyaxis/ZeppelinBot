@@ -1,4 +1,4 @@
-import { modActionsCmd, IgnoredEventType } from "../types";
+import { modActionsCmd } from "../types";
 import { commandTypeHelpers as ct } from "../../../commandTypes";
 import { canActOn, sendErrorMessage, hasPermission, sendSuccessMessage } from "../../../pluginUtils";
 import { resolveUser, resolveMember, stripObjectToScalars, noop } from "../../../utils";

@@ -16,9 +16,7 @@ export async function getMessageInfoEmbed(
   requestMemberId?: string,
 ): Promise<EmbedOptions | null> {
   const message = await pluginData.client.getMessage(channelId, messageId).catch(() => null);
-  if (!message) {
-    return null;
-  }
+  if (!message) return null;
 
   const timeAndDate = pluginData.getPlugin(TimeAndDatePlugin);
 

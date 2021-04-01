@@ -6,7 +6,7 @@ import Timeout = NodeJS.Timeout;
 let dmsDisabled = false;
 let dmsDisabledTimeout: Timeout;
 
-function disableDMs(duration) {
+function disableDMs(duration: number) {
   dmsDisabled = true;
   clearTimeout(dmsDisabledTimeout);
   dmsDisabledTimeout = setTimeout(() => (dmsDisabled = false), duration);

@@ -12,7 +12,6 @@ import {
 import { SavedMessage } from "../../../data/entities/SavedMessage";
 import { renderTemplate, TemplateParseError } from "../../../templateFormatter";
 import { logger } from "../../../logger";
-import moment from "moment-timezone";
 import { TimeAndDatePlugin } from "../../TimeAndDate/TimeAndDatePlugin";
 import { MessageContent } from "eris";
 
@@ -83,12 +82,12 @@ export async function getLogMessage(
 
   if (type === LogType.BOT_ALERT) {
     const valuesWithoutTmplEval = { ...values };
-    values.tmplEval = str => {
+    values.tmplEval = (str: string) => {
       return renderTemplate(str, valuesWithoutTmplEval);
     };
   }
 
-  const renderLogString = str => renderTemplate(str, values);
+  const renderLogString = (str: string) => renderTemplate(str, values);
 
   let formatted;
   try {

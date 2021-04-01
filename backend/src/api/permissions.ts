@@ -12,9 +12,7 @@ export const hasGuildPermission = async (userId: string, guildId: string, permis
   }
 
   const permAssignment = await apiPermissionAssignments.getByGuildAndUserId(guildId, userId);
-  if (!permAssignment) {
-    return false;
-  }
+  if (!permAssignment) return false;
 
   return hasPermission(permissionArrToSet(permAssignment.permissions), permission);
 };

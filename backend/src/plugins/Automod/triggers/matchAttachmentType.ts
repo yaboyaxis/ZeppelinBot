@@ -2,7 +2,6 @@ import * as t from "io-ts";
 import { automodTrigger } from "../helpers";
 import {
   asSingleLine,
-  disableCodeBlocks,
   disableInlineCode,
   messageSummary,
   verboseChannelMention,
@@ -29,9 +28,7 @@ export const MatchAttachmentTypeTrigger = automodTrigger<MatchResultType>()({
   },
 
   async match({ pluginData, context, triggerConfig: trigger }) {
-    if (!context.message) {
-      return;
-    }
+    if (!context.message) return;
 
     if (!context.message.data.attachments) return null;
     const attachments: any[] = context.message.data.attachments;

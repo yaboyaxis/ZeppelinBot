@@ -1,7 +1,6 @@
 import * as t from "io-ts";
 import { automodAction } from "../helpers";
-import { LogType } from "../../../data/LogType";
-import { asyncMap, nonNullish, resolveMember, tNullable, unique } from "../../../utils";
+import { nonNullish, tNullable, unique } from "../../../utils";
 import { resolveActionContactMethods } from "../functions/resolveActionContactMethods";
 import { ModActionsPlugin } from "../../ModActions/ModActionsPlugin";
 

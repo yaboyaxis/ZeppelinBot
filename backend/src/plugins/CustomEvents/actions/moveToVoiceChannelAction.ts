@@ -5,7 +5,7 @@ import { renderTemplate } from "../../../templateFormatter";
 import { resolveMember } from "../../../utils";
 import { ActionError } from "../ActionError";
 import { canActOn } from "../../../pluginUtils";
-import { Message, VoiceChannel } from "eris";
+import { VoiceChannel } from "eris";
 
 export const MoveToVoiceChannelAction = t.type({
   type: t.literal("move_to_vc"),

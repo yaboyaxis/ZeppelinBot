@@ -1,5 +1,5 @@
 import * as t from "io-ts";
-import { tNullable, UnknownUser } from "../../utils";
+import { tNullable } from "../../utils";
 import { BasePluginType, CooldownManager } from "knub";
 import { GuildSavedMessages } from "../../data/GuildSavedMessages";
 import { GuildLogs } from "../../data/GuildLogs";

@@ -1,5 +1,5 @@
 import { zeppelinGuildPlugin } from "../ZeppelinPluginBlueprint";
-import { ConfigSchema, MuteOptions, MutesPluginType } from "./types";
+import { ConfigSchema, MutesPluginType } from "./types";
 import { CasesPlugin } from "../Cases/CasesPlugin";
 import { GuildMutes } from "../../data/GuildMutes";
 import { GuildCases } from "../../data/GuildCases";

@@ -9,9 +9,7 @@ export const UnmuteTrigger = automodTrigger<UnmuteTriggerResultType>()({
   defaultConfig: {},
 
   async match({ context }) {
-    if (context.modAction?.type !== "unmute") {
-      return;
-    }
+    if (context.modAction?.type !== "unmute") return;
 
     return {
       extra: {},

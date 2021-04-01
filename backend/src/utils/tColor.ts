@@ -1,6 +1,5 @@
 import * as t from "io-ts";
 import { either } from "fp-ts/lib/Either";
-import { convertDelayStringToMS } from "../utils";
 import { parseColor } from "./parseColor";
 import { rgbToInt } from "./rgbToInt";
 import { intToRgb } from "./intToRgb";

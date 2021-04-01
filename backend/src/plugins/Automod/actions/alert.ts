@@ -2,16 +2,10 @@ import * as t from "io-ts";
 import { automodAction } from "../helpers";
 import { LogType } from "../../../data/LogType";
 import {
-  asyncMap,
   createChunkedMessage,
-  isDiscordRESTError,
   messageLink,
-  resolveMember,
   stripObjectToScalars,
-  tNullable,
 } from "../../../utils";
-import { resolveActionContactMethods } from "../functions/resolveActionContactMethods";
-import { ModActionsPlugin } from "../../ModActions/ModActionsPlugin";
 import { TextChannel } from "eris";
 import { renderTemplate, TemplateParseError } from "../../../templateFormatter";
 import { LogsPlugin } from "../../Logs/LogsPlugin";

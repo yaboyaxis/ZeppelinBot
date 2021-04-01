@@ -1,9 +1,6 @@
 import { GuildPluginData } from "knub";
 import { StarboardPluginType, TStarboardOpts } from "../types";
 import { Message, GuildChannel, TextChannel, Embed } from "eris";
-import moment from "moment-timezone";
-import { EmbedWith, EMPTY_CHAR, messageLink } from "../../../utils";
-import path from "path";
 import { createStarboardEmbedFromMessage } from "./createStarboardEmbedFromMessage";
 import { createStarboardPseudoFooterForMessage } from "./createStarboardPseudoFooterForMessage";
 

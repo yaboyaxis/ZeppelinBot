@@ -27,7 +27,7 @@ export class UsernameHistory extends BaseRepository {
     this.usernameHistory = getRepository(UsernameHistoryEntry);
   }
 
-  async getByUserId(userId): Promise<UsernameHistoryEntry[]> {
+  async getByUserId(userId: string): Promise<UsernameHistoryEntry[]> {
     return this.usernameHistory.find({
       where: {
         user_id: userId,
@@ -39,7 +39,7 @@ export class UsernameHistory extends BaseRepository {
     });
   }
 
-  getLastEntry(userId): Promise<UsernameHistoryEntry | undefined> {
+  getLastEntry(userId: string): Promise<UsernameHistoryEntry | undefined> {
     return this.usernameHistory.findOne({
       where: {
         user_id: userId,
@@ -50,7 +50,7 @@ export class UsernameHistory extends BaseRepository {
     });
   }
 
-  async addEntry(userId, username) {
+  async addEntry(userId: string, username: string) {
     await this.usernameHistory.insert({
       user_id: userId,
       username,

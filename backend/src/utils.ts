@@ -35,10 +35,8 @@ import { decodeAndValidateStrict, StrictValidationError } from "./validatorUtils
 import { either } from "fp-ts/lib/Either";
 import moment from "moment-timezone";
 import { SimpleCache } from "./SimpleCache";
-import { logger } from "./logger";
 import { unsafeCoerce } from "fp-ts/lib/function";
 import { sendDM } from "./utils/sendDM";
-import { LogType } from "./data/LogType";
 
 const fsp = fs.promises;
 
@@ -355,11 +353,11 @@ export function convertMSToDelayString(ms: number): string {
   return result;
 }
 
-export function successMessage(str, emoji = "<:zep_check:650361014180904971>") {
+export function successMessage(str: string, emoji = "<:zep_check:650361014180904971>") {
   return emoji ? `${emoji} ${str}` : str;
 }
 
-export function errorMessage(str, emoji = "⚠") {
+export function errorMessage(str: string, emoji = "⚠") {
   return emoji ? `${emoji} ${str}` : str;
 }
 

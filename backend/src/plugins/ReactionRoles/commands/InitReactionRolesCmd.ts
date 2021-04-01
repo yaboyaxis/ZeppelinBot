@@ -1,8 +1,6 @@
 import { reactionRolesCmd, TReactionRolePair } from "../types";
 import { commandTypeHelpers as ct } from "../../../commandTypes";
 import { sendErrorMessage, sendSuccessMessage } from "../../../pluginUtils";
-import { TextChannel } from "eris";
-import { RecoverablePluginError, ERRORS } from "../../../RecoverablePluginError";
 import { canUseEmoji, isDiscordRESTError, isValidEmoji, noop, trimPluginDescription } from "../../../utils";
 import { applyReactionRoleReactionsToMessage } from "../util/applyReactionRoleReactionsToMessage";
 import { canReadChannel } from "../../../utils/canReadChannel";

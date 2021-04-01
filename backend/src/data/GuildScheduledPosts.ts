@@ -5,7 +5,7 @@ import { ScheduledPost } from "./entities/ScheduledPost";
 export class GuildScheduledPosts extends BaseGuildRepository {
   private scheduledPosts: Repository<ScheduledPost>;
 
-  constructor(guildId) {
+  constructor(guildId: string) {
     super(guildId);
     this.scheduledPosts = getRepository(ScheduledPost);
   }
@@ -25,7 +25,7 @@ export class GuildScheduledPosts extends BaseGuildRepository {
       .getMany();
   }
 
-  async delete(id) {
+  async delete(id: number) {
     await this.scheduledPosts.delete({
       guild_id: this.guildId,
       id,

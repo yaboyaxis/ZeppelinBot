@@ -2,12 +2,9 @@ import * as t from "io-ts";
 import escapeStringRegexp from "escape-string-regexp";
 import { automodTrigger } from "../helpers";
 import {
-  asSingleLine,
-  disableCodeBlocks,
   disableInlineCode,
   getUrlsInString,
   tNullable,
-  verboseChannelMention,
 } from "../../../utils";
 import { MatchableTextType, matchMultipleTextTypesOnMessage } from "../functions/matchMultipleTextTypesOnMessage";
 import { TRegex } from "../../../validatorUtils";
